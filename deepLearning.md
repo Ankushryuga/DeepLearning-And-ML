@@ -22,3 +22,17 @@ patterns synonymous=> embedding, weights, feature representation.
 4. Transfer Learning: example: it will be taking what one neural network had learned then using that to find pattern in another data.
 
 
+## Basic of TensorFlow
+## CASTING
+## INITIALIZATION
+## INDEXING
+## BROADCASTING
+## ALGEBRAIC OPERATIONS
+## MATRIX OPERATIONS
+## COMMONLY USED FUNCTIONS IN ML
+## RAGGED TENSORS
+## SPARSE TENSORS
+## STRING TENSORS
+
+
+
