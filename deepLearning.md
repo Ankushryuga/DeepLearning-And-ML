@@ -23,6 +23,41 @@ patterns synonymous=> embedding, weights, feature representation.
 
 
 ## Basic of TensorFlow
+1. Tensor: are multi dimensional arrays,
+   ==> import tensorflow as tf  ## importing
+   ==> 0-D array
+   tensor_zero_d=tf.constant(0)  ## 0-D
+   ==> 1-D array
+   tensor_one_d=tf.constant([1,2,3])  ## 1-D
+   ==> 2-D array
+   tensor_two_d=tf.constant([[1,2,3],[2,5,7]])  ## 2-D
+   ==> 3-D array
+   tensor_three_d=tf.constant([
+   [[1,2,3],[2,5,7]],
+   [[1,2,3],[2,5,27]],
+   [[1,2,3],[2,5,7]]
+   ])  ## 3-D
+   == 4-D array
+   tensor_four_d=tf.constant([
+   [
+   [[1,2,3],[2,5,7]],
+   [[1,2,3],[2,5,27]],
+   [[1,2,3],[2,5,7]]
+   ],
+   [
+   [[1,2,3],[2,5,7]],
+   [[1,2,3],[2,5,27]],
+   [[1,2,3],[2,5,7]]
+   ],
+   [
+   [[1,2,3],[2,5,7]],
+   [[1,2,3],[2,5,27]],
+   [[1,2,3],[2,5,7]]
+   ],
+   ])  ## 4-D tensor
+
+2. Check tensorflow's available data type and in built methods.
+
 ## CASTING
 ## INITIALIZATION
 ## INDEXING
