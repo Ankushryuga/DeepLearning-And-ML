@@ -57,17 +57,28 @@ patterns synonymous=> embedding, weights, feature representation.
    ])  ## 4-D tensor
 
 2. Check tensorflow's available data type and in built methods.
+   ### Practice More and more with tensorflow methods
 
-## CASTING
-## INITIALIZATION
-## INDEXING
-## BROADCASTING
-## ALGEBRAIC OPERATIONS
-## MATRIX OPERATIONS
-## COMMONLY USED FUNCTIONS IN ML
-## RAGGED TENSORS
-## SPARSE TENSORS
-## STRING TENSORS
+3. CASTING
+4. INITIALIZATION
+5. INDEXING
+6. BROADCASTING
+7. ALGEBRAIC OPERATIONS
+8. MATRIX OPERATIONS
+9. COMMONLY USED FUNCTIONS IN ML
+10. RAGGED TENSORS
+11. SPARSE TENSORS
+12. STRING TENSORS
 
+
+### Machine Learning Development Life Cycle
+1. Task  (understand the task properly).
+2. Data
+3. Modeling
+4. Error Measurement
+5. Training & Optimization
+6. Performance Measurement
+7. Validating & Testing
+8. Corrective Measures
 
 
