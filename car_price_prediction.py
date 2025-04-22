@@ -75,3 +75,63 @@ tensor_data=tf.constant([[[[[1,2,3,4,5],[1,5,7,8,9],[1,5,71,8,9]],
                         )
 print(tensor_data.shape)     ## (5, 3, 4, 3, 5)
 
+
+import tensorflow as tf   ## modal
+import pandas as pd   ## reading and processing
+import seaborn as sns   ## visualization
+from tensorflow.keras.layers import Normalization
+data=pd.read_csv("train.csv")
+# tensor_data=tf.constant(data)
+# print(tensor_data)
+sns.pairplot(data[['years', 'km', 'rating', 'condition', 'economy',  'top speed', 'hp', 'torque', 'current price']])
+data=pd.read_csv("train.csv")
+# tensor_data=tf.constant(data)
+# print(tensor_data)
+sns.pairplot(data[['v.id', 'on road old', 'on road now', 'years', 'km', 'rating', 'condition', 'economy',  'top speed', 'hp', 'torque', 'current price']])
+
+
+
+
+
+
+tensor_data=tf.constant(data)
+tensor_data=tf.cast(tensor_data,tf.float32)
+print(tensor_data)
+
+
+x=tensor_data[:,3:-1]
+print(x[:5])
+
+
+
+y=tensor_data[:, -1]
+print(y.shape)
+y=tf.expand_dims(y, axis=-1)
+print(y[:5])
+
+
+
+
+normalizer=Normalization(axis=-1, mean=5,variance=4)
+x_normalized=tf.constant([[3,4,5,6,7],[4,5,6,7,8]])
+normalizer(x_normalized)
+
+
+
+
+normalizer=Normalization()
+x_normalized=tf.constant([[3,4,5,6,7],[4,5,6,7,8]])
+normalizer.adapt(x_normalized)
+normalizer(x_normalized)
+
+# mean and varaince is being considered for each column..
+
+
+normalizer=Normalization()
+normalizer.adapt(x)
+normalizer(x)[:5]
+print(x[:5])
+
+
+
+
