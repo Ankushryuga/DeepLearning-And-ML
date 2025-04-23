@@ -47,4 +47,39 @@ print(percent_missing)
 
 
 
+### Handling Missing Data:::
+## Loading data..
+import pandas as pd
+import numpy as np
 
+nfl_data=pd.read_csv("NFL Play by Play 2009-2017 (v4).csv") 
+np.random.seed(0)
+nfl_data.head()
+
+## Finding the missing values..
+missing_values_count=nfl_data.isnull().sum()
+missing_values_count[0:10]
+total_cells = np.prod(nfl_data.shape)
+# print(total_cells)
+total_missing = missing_values_count.sum()
+# print(total_missing)
+percent_missing=(total_missing/total_cells)*100
+print(percent_missing)
+## First apporach of handling missing values:: 1. By dropping...
+## Droping the missing values( Not recommended its just .0001% )..
+columns_with_na_dropped=nfl_data.dropna(axis=1)
+columns_with_na_dropped.head()
+columns_with_na_dropped.shape
+print(columns_with_na_dropped)
+print("Columns in original dataset: %d \n" % nfl_data.shape[1])
+print("Columns with na's dropped: %d " % columns_with_na_dropped.shape[1])
+
+# print(nfl_data.shape)
+# print(columns_with_na_dropped.shape)
+NOTE: axis=1 means column, and axis=0 means row.
+
+## 2nd Approach: By filling the missing values automatically..
+subset_nfl_data=nfl_data.loc[:, 'EPA':'Season'].head()
+subset_nfl_data
+subset_nfl_data.fillna(0) # replace all NA's with 0.
+subset_nfl_data.fillna(method='bfill', axis=0).fillna(0)  ## replace all NA's the value that comes directly after it in the same column.
