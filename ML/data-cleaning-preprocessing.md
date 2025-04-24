@@ -341,6 +341,111 @@ earthquakes = pd.read_csv("../input/earthquake-database/database.csv")
 # set seed for reproducibility
 np.random.seed(0)
 
+## #######################      CHARACTER ENCODING      #############################
+## load the modules, setups and all
+import pandas as pd
+import numpy as np
+import charset_normalizer
+
+np.random.seed(0)
+
+## Encoding:
+character encodings are specific sets of rules for mapping from raw binary byte string (ex: 0110100001101001) to characters that make up human-readable text (ex: "hi"), 
+There are many different encodings, and if you tried to read in text with a different encoding than the one it was originally written in, you ended up with scrambled text called "mojibake" (said like mo-gee-bah-kay). Here's an example of mojibake:
+
+æ–‡å—åŒ–ã??
+You might also end up with a "unknown" characters. There are what gets printed when there's no mapping between a particular byte and a character in the encoding you're using to read your byte string in and they look like this:
+
+����������
+
+Character encoding mismatches are less common today than they used to be, but it's definitely still a problem. There are lots of different character encodings, but the main one you need to know is UTF-8.
+
+**UTF-8 is the standard text encoding. All Python code is in UTF-8 and, ideally, all your data should be as well. It's when things aren't in UTF-8 that you run into trouble.**
+
+### start with a string:
+before="This is euro sumbol: €"
+type(before)
+
+The other data is the bytes data type, which is a sequence of integers. You can convert a string into bytes by specifying which encoding it's in:
+
+# encode it to a different encoding, replacing characters that raise errors
+after = before.encode("utf-8", errors="replace")
+
+# check the type
+type(after)
+
+you'll see that it has a b in front of it, and then maybe some text after. That's because bytes are printed out as if they were characters encoded in ASCII. (ASCII is an older character encoding that doesn't really work for writing any language other than English.) Here you can see that our euro symbol has been replaced with some mojibake that looks like "\xe2\x82\xac" when it's printed as if it were an ASCII string.
+
+## take a look at what the bytes look like
+after
+o/p: b'This is the euro symbol: \xe2\x82\xac'
+
+
+# convert it back to utf-8
+print(after.decode("utf-8"))
+
+# try to decode our bytes with the ascii encoding
+print(after.decode("ascii"))
+
+#### Practice:::
+# setup..
+from learntools.core import binder
+binder.bind(globals())
+from learntools.data_cleaning.ex4 import *
+
+
+print("Setup Complete")
+
+# start with a string
+before = "This is the euro symbol: €"
+
+# encode it to a different encoding, replacing characters that raise errors
+after = before.encode("ascii", errors = "replace")
+
+# convert it back to utf-8
+print(after.decode("ascii"))
+
+# We've lost the original underlying byte string! It's been 
+# replaced with the underlying byte string for the unknown character :(
+
+
+
+
+### Reading in files with encoding problems:
+
+# try to read in a file not in UTF-8
+kickstarter_2016 = pd.read_csv("../input/kickstarter-projects/ks-projects-201612.csv")
+//will give errors..
+
+# look at the first ten thousand bytes to guess the character encoding
+with open("../input/kickstarter-projects/ks-projects-201801.csv", 'rb') as rawdata:
+    result = charset_normalizer.detect(rawdata.read(10000))
+
+# check what the character encoding might be
+print(result)
+o/p: {'encoding': 'utf-8', 'language': 'English', 'confidence': 1.0}
+
+
+# read in the file with the encoding detected by charset_normalizer
+kickstarter_2016 = pd.read_csv("../input/kickstarter-projects/ks-projects-201612.csv", encoding='Windows-1252')
+
+# look at the first few lines
+kickstarter_2016.head()
+
+
+
+## What if the encoding charset_normalizer guesses isn't right?
+Since charset_normalizer is basically just a fancy guesser, sometimes it will guess the wrong encoding. One thing you can try is looking at more or less of the file and seeing if you get a different result and then try that.
+
+## Saving your file with UTF-8 encoding..
+
+# save our file (will be saved as UTF-8 by default!)
+kickstarter_2016.to_csv("ks-projects-201801-utf8.csv")
+
+
+
+
+
 
 
 
