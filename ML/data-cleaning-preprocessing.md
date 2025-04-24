@@ -148,4 +148,19 @@ and the two-parameter Box–Cox transformations as
 
 The parameter ![image](https://github.com/user-attachments/assets/d469dc20-2a80-4a9c-bfd7-eb4ddc5e1003) is estimated using the profile likelihood function and using goodness-of-fit tests.
 
+# Normalize the exponential data with boxcox
+normalized_data=stats.boxcox(original_data)
+
+# plot both together to compare
+fig, ax=plt.subplots(1,2, figsize=(15,3))
+sns.histplot(original_data, ax=ax[0], kde=True, legend=False)
+ax[0].set_title("Original Data")
+sns.histplot(normalized_data[0], ax=ax[1], kde=True, legend=False)
+ax[1].set_title("Normalized data")
+plt.show()
+
+Notice that the shape of our data has changed. Before normalizing it was almost L-shaped. But after normalizing it looks more like the outline of a bell (hence "bell curve").
+
+
+
 
