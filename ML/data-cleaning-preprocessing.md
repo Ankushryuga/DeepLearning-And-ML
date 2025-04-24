@@ -259,3 +259,88 @@ print('Minimum value: ', float(normalized_pledged.min()),
 ax=sns.histplot(normalized_pledged, kde=True)
 ax.set_title("Normalized data")
 plt.show()
+
+
+
+
+##### Parsing Dates
+#Load the data:
+# modules we'll use
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import datetime
+
+# read in our data
+landslides = pd.read_csv("../input/landslide-events/catalog.csv")
+
+# set seed for reproducibility
+np.random.seed(0)
+
+# Check the data type of our date column
+We begin by taking a look at the first five rows of the data.
+landslides.head()
+
+# print the first few rows of the date column
+print(landslides['date'].head())
+
+# Pandas uses the "object" dtype for storing various types of data types, but most often when you see a column with the dtype "object" it will have strings in it.
+
+
+# check the data type of our date column
+landslides['date'].dtype 
+
+# convert date columns to datetime..
+:https://strftime.org/
+
+1/17/07 has the format "%m/%d/%y"
+17-1-2007 has the format "%d-%m-%Y"
+
+# create a new column, date_parsed, with the parsed dates
+landslides['date_parsed'] = pd.to_datetime(landslides['date'], format="%m/%d/%y")
+
+# print the first few rows..
+landslides['date_parsed'].head()
+Name: date_parsed, dtype: datetime64[ns]
+# for handling multiple date formats:
+landslides['date_parsed'] = pd.to_datetime(landslides['Date'], infer_datetime_format=True)
+
+# Why don't you always use infer_datetime_format = True? 
+There are two big reasons not to always have pandas guess the time format. The first is that pandas won't always been able to figure out the correct date format, especially if someone has gotten creative with data entry. The second is that it's much slower than specifying the exact format of the dates.
+
+## Select the day of the month:
+day_of_month_landslides=landslides['date_parsed'].dt.day
+day_of_month_landslides.head()
+o/p:
+1    14.0
+2    15.0
+Name: date_parsed, dtype: float64
+
+## Plot the day of month to check the date parsing..
+#remove na's
+day_of_month_landslides=day_of_month_landslides.dropna()
+
+#plot the day of the month.
+sns.distplot(day_of_month_landslides, kde=False, bins=31)
+
+## Setup
+from learntools.core import binder
+binder.bind(globals())
+from learntools.data_cleaning.ex3 import *
+print("Setup Complete")
+
+# Get our environment set up.
+# modules we'll use
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import datetime
+
+# read in our data
+earthquakes = pd.read_csv("../input/earthquake-database/database.csv")
+# set seed for reproducibility
+np.random.seed(0)
+
+
+
+
