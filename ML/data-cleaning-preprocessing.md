@@ -83,3 +83,69 @@ subset_nfl_data=nfl_data.loc[:, 'EPA':'Season'].head()
 subset_nfl_data
 subset_nfl_data.fillna(0) # replace all NA's with 0.
 subset_nfl_data.fillna(method='bfill', axis=0).fillna(0)  ## replace all NA's the value that comes directly after it in the same column.
+
+
+##   Scaling and Normalization
+Import neccessary libraries:
+
+#modules
+import pandas as pd
+import numpy as np
+#for Box-Cox transformations
+from scipy import stats
+#for min_max scaling
+from mlxtend.preprocessing import minmax_scaling
+#plotting modules
+import seaborn as sns
+import matplotlib.pyplot as plt
+#set seed for reproducibility.
+np.random.seed(0)
+
+
+## Scaling vs Normalization: what's the difference?
+-> Scaling:- you're changing the range of your data
+-> Normalization:- you're changing the shape of the distribution of your data
+
+# Scaling:
+it means that you're transforming your data so that it fits within a specific scale, like 0-100 or 0-1. you want to scale data when you're using methods based on measures of how far apart data points are, like **support vector machines(SVM)** or **k-nearest neighbors**. with these algorithms, a change of "1" in any numeric feature is given the same importance.
+
+==>For example, you might be looking at the prices of some products in both Yen and US Dollars. One US Dollar is worth about 100 Yen, but if you don't scale your prices, methods like SVM or KNN will consider a difference in price of 1 Yen as important as a difference of 1 US Dollar! This clearly doesn't fit with our intuitions of the world. With currency, you can convert between currencies. But what about if you're looking at something like height and weight? It's not entirely clear how many pounds should equal one inch (or how many kilograms should equal one meter).
+
+By scaling your variables, you can help compare different variables on equal footing. 
+
+
+# generate 1000 data points randomly drawn from an exponential distribution..
+original_data=np.random.exponential(size=1000)
+# mix-max scale the data b/w 0 and 1.
+scaled_data=minmax_scaling(original_data, columns=[0])
+
+# plot both together to compare
+fig, ax=plt.subplots(1,2, figsize=(15,3))
+sns.hisplot(original_data, ax=ax[0], kde=True, legend=False)
+ax[0].set_title("Original Data")
+sns.histplot(scaled_data, ax=ax[1], kde=True, legend=False)
+ax[1].set_title("Scaled Data")
+plt.show()
+
+Notice: the shape of the data doesn't change, but that instead of ranging from 0 to 8ish, it now ranges from 0 to 1.
+
+## Normalization:
+Scaling just changes the range of your data. Normalization is a more radical transformation. The point of normalization is to change your observations so that they can be described as a normal distribution.
+
+=> Normal Distribution: Also known as the "bell curve", this is a specific statistical distribution where a roughly equal observations fall above and below the mean, the mean and the median are the same, and there are more observations closer to the mean. The normal distribution is also known as the Gaussian distribution.
+
+in general, you'll normalize your data if you're going to be using a ML or statistics techinque that assumes your data is normally distributed. some exmple of these include linear discriminant analysis (LDA) and Gaussian naive Bayes (any method with "Gaussian" in the name probably  assumes normality).
+
+
+
+## BOX-COX Transformation
+The one-parameter Box–Cox transformations are defined as
+
+![image](https://github.com/user-attachments/assets/2e5ed5c0-5340-482a-88f2-21022c7a82ec)
+
+and the two-parameter Box–Cox transformations as
+![image](https://github.com/user-attachments/assets/102bec27-5055-46dd-abc5-bdd3263252f1)
+
+The parameter ![image](https://github.com/user-attachments/assets/d469dc20-2a80-4a9c-bfd7-eb4ddc5e1003) is estimated using the profile likelihood function and using goodness-of-fit tests.
+
+
