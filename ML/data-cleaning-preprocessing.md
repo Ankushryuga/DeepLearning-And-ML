@@ -66,7 +66,7 @@ total_missing = missing_values_count.sum()
 percent_missing=(total_missing/total_cells)*100
 print(percent_missing)
 ## First apporach of handling missing values:: 1. By dropping...
-## Droping the missing values( Not recommended its just .0001% )..
+## Droping the missing values( Not recommended )..
 columns_with_na_dropped=nfl_data.dropna(axis=1)
 columns_with_na_dropped.head()
 columns_with_na_dropped.shape
