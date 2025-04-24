@@ -445,7 +445,49 @@ kickstarter_2016.to_csv("ks-projects-201801-utf8.csv")
 
 
 
+### Practice::
+#setup:
+
+from learntools.core import binder
+binder.bind(globals())
+from learntools.data_cleaning.ex4 import *
+print("Setup Complete")
+
+# modules we'll use
+import pandas as pd
+import numpy as np
+
+# helpful character encoding module
+import charset_normalizer
+
+# set seed for reproducibility
+np.random.seed(0)
 
 
+# What are encodings?
+sample_entry = b'\xa7A\xa6n'
+print(sample_entry)
+print('data type:', type(sample_entry))
+
+o/p:
+b'\xa7A\xa6n'
+data type: <class 'bytes'>
 
 
+Use the next code cell to create a variable new_entry that changes the encoding from "big5-tw" to "utf-8". new_entry should have the bytes datatype.
+
+before = sample_entry.decode("big5-tw", errors="replace")#____
+new_entry=before.encode("utf-8")
+# Check your answer
+q1.check()
+
+
+## Reading in files with encoding problems
+Use the code cell below to read in this file at path "../input/fatal-police-shootings-in-the-us/PoliceKillingsUS.csv".
+
+Figure out what the correct encoding should be and read in the file to a DataFrame police_killings.
+# TODO: Load in the DataFrame correctly.
+police_killings = pd.read_csv("../input/fatal-police-shootings-in-the-us/PoliceKillingsUS.csv",encoding='windows-1252') #____
+
+# Check your answer
+q2.check()
