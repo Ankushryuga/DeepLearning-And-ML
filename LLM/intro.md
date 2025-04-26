@@ -1,4 +1,5 @@
 # intro of llm.
+## Pipe Line of LLM: Data Extraction, Processing, and Model Training.
 
 ## Tokens:
 Anything can be added as a token that AI can generate (predict based on preceding text):
