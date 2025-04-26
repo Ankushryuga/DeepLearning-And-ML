@@ -22,3 +22,7 @@
 2. Django
 
 ==> Docker, Kubernetes
+
+
+https://www.youtube.com/watch?v=7IgVGSaQPaw
+https://www.youtube.com/shorts/xS31Se82pQo
