@@ -31,5 +31,41 @@ etc..
 4. Most words are rare and will not appear enough times in the training data for model to learn their meaning well.
 ....etc.
 
+### Building a Byte pair encoding (BPE) tokenizer from scaratch..
 
+## Step 1: Prepare data.
+The first step in building any tokenizer is to have a corpus of text train it on. The tokenizer learns merge rules based on the frequency character pairs in this data.
+i: 1
+s: 2
+is: 3
+
+Example:
+corpus=[
+"This is the first document.",
+"This document is the second document.",
+"And this is the third one.",
+"Is this the first document?",
+]
+
+
+print("training corpus")
+for doc in corpus
+print(doc)
+
+
+unique_chars=set()
+for doc in corpus:
+  for char in doc:
+    unique_chars.add(char)
+
+
+vocab=list(unique_chars)
+vocab.sort()
+
+end_of_word="</w>"
+vocab.append(end_of_word)
+
+print("Initial vocabulary")
+print(vocab)
+print(f"vocabulary size: {len(vocab)}")
 
