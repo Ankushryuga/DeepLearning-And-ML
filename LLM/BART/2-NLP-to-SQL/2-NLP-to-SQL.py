@@ -84,3 +84,17 @@ print(generate_sql("List all customers from California"))
 
 # Output:
 # SELECT * FROM customers WHERE state = 'California';
+
+
+
+# 🎁 Bonus: Prebuilt Datasets
+
+# You can use datasets like:
+
+# spider → complex cross-domain SQL
+# wikisql → simple single-table SQL
+# Install via:
+
+# from datasets import load_dataset
+# dataset = load_dataset("spider")
+
