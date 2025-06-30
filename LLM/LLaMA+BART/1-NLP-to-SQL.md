@@ -1,3 +1,5 @@
+# => combine LLaMA (for general text generation) and BART (for NLP-to-SQL conversion) in a pipeline
+ 
 # 🧠 Why Combine LLaMA and BART?
 
     | Purpose                                | Best Model                                 |
@@ -17,3 +19,11 @@ User Input → Task Classifier
            ↙            ↘
      Chat/General     Structured Query
         (LLaMA)            (BART)
+
+
+# summary:
+| ✅ Pros                         | ❌ Cons                                 |
+| ------------------------------ | -------------------------------------- |
+| Leverages strengths of both    | Requires two models (larger footprint) |
+| Clear modular design           | Needs task routing logic               |
+| Flexible for multi-modal tasks | Training and inference costs           |
