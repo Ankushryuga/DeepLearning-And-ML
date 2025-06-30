@@ -37,3 +37,15 @@
     Question answering
     Instruction following (when fine-tuned)
     Translation or summarization (with fine-tuning)
+
+
+
+# summary
+| Feature            | Value                                   |
+| ------------------ | --------------------------------------- |
+| Model Type         | Decoder-only Transformer                |
+| Training Objective | Next-token prediction (causal LM)       |
+| Context Awareness  | Left-to-right (not bidirectional)       |
+| Open Source?       | ✅ Yes (LLaMA 2+3 under open licenses)   |
+| Use Cases          | Chat, generation, QA, coding, reasoning |
+
