@@ -37,4 +37,18 @@
       4. Paraphrasing
       5. Question answering
       Because it learns both how to understand and generate text.
+
+
+
+
+📌 Summary of Key Features
+
+| Feature     | Description                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| Model type  | Sequence-to-sequence (encoder-decoder)                                      |
+| Encoder     | Bidirectional (like BERT)                                                   |
+| Decoder     | Autoregressive (like GPT)                                                   |
+| Pretraining | Corrupting input (e.g., token masking, sentence permutation) then denoising |
+| Use cases   | Summarization, translation, question answering, generation                  |
+
       
