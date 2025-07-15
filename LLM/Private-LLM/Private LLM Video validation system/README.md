@@ -1,15 +1,15 @@
 ## Project Structure:
-video-validator/
-├── app/
-│   ├── main.py              # FastAPI app
-│   ├── video_utils.py       # Video/audio processing
-│   ├── whisper_transcriber.py
-│   ├── frame_analyzer.py    # (YOLO/CLIP can go here)
-│   └── llm_validator.py     # LLM integration with Ollama
-├── models/                  # Optional directory for weights
-├── Dockerfile
-├── requirements.txt
-└── README.md
+    video-validator/
+    ├── app/
+    │   ├── main.py              # FastAPI app
+    │   ├── video_utils.py       # Video/audio processing
+    │   ├── whisper_transcriber.py
+    │   ├── frame_analyzer.py    # (YOLO/CLIP can go here)
+    │   └── llm_validator.py     # LLM integration with Ollama
+    ├── models/                  # Optional directory for weights
+    ├── Dockerfile
+    ├── requirements.txt
+    └── README.md
 
 
 ## Requirements.txt
@@ -24,17 +24,17 @@ video-validator/
 
 
 # DockerFile:
-FROM python:3.10-slim
-
-RUN apt-get update && apt-get install -y ffmpeg git && \
-    pip install --upgrade pip
-
-WORKDIR /app
-COPY . /app
-
-RUN pip install -r requirements.txt
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    FROM python:3.10-slim
+    
+    RUN apt-get update && apt-get install -y ffmpeg git && \
+        pip install --upgrade pip
+    
+    WORKDIR /app
+    COPY . /app
+    
+    RUN pip install -r requirements.txt
+    
+    CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
 
